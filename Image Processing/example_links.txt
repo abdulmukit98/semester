@@ -1,0 +1,34 @@
+Some sample/example links/URLs:
+	https://kapernikov.com/tutorial-image-classification-with-scikit-learn/
+	https://www.mygreatlearning.com/blog/object-detection-using-tensorflow/
+	https://pyimagesearch.com/    (Get Started, Topics, etc.)
+	https://machinelearningmastery.com/object-recognition-with-deep-learning/
+	https://www.edureka.co/blog/tensorflow-object-detection-tutorial/
+
+
+
+
+
+1. Fundamentals of Digital Image Processing: A Practical Approach with Examples in Matlab [1st Edition]
+           by 
+          Chris Solomon  (Author), Toby Breckon (Author)
+Publisher ‏ : ‎ Wiley; 1st edition (January 4, 2011)
+Language ‏ : ‎ English
+Paperback ‏ : ‎ 344 pages
+ISBN-10 ‏ : ‎ 0470844736
+ISBN-13 ‏ : ‎ 978-0470844731
+2. Fundamentals of Digital Image Processing
+            by
+           Anil K. Jain (Author)
+Publisher ‏ : ‎ Prentice Hall of India; 1st edition (January 1, 2004)
+Language ‏ : ‎ English
+ISBN-10 ‏ : ‎ 8120309294
+ISBN-13 ‏ : ‎ 978-8120309296
+3. Pattern Recognition and Image Analysis
+          by
+          Earl Gose, Richard Johnsonbaug, and Steve Jost
+Publisher ‏ : ‎ Prentice Hall India Learning Private Limited (1 January 2011)
+Language ‏ : ‎ English
+Paperback ‏ : ‎ 496 pages
+ISBN-10 ‏ : ‎ 8120314840
+ISBN-13 ‏ : ‎ 978-8120314849
