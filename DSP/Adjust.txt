@@ -1,0 +1,484 @@
+1. Plot the sequence, {5, -2, 0, 3, 4, 6}.
+
+y=[5 -2 0 3 4 6];
+stem(y, 'k')
+xlabel('n')
+ylabel('x(n)')
+grid on
+
+
+Plot the sequence
+x= { -2, 5, 5, ^3, -1, 6, -3 }
+
+n=-3:3;
+x=[-2 5 5 3 -1 6 -3];
+stem(n,x)
+grid on
+xlabel('n')
+ylabel('x(n)')
+
+********************************************
+
+
+2. Plot of the exponential sequence, y(n) = ar^n for a = 2, r = 0.8 and 1.2.
+
+n=0:1:20;
+subplot(2,1,1)
+a=2;
+r=0.8;
+y=a*r.^n;
+stem(n,y, 'k')
+xlabel('n')
+ylabel('y(n)')
+title('y=ar^n; where r<1')
+grid on
+subplot(2,1,2)
+a=2;
+r=1.2;
+y=a*r.^n;
+stem(n,y, 'k')
+xlabel('n')
+ylabel('y(n)')
+title('y=ar^n; where r>1')
+grid on
+
+**************************************************************
+
+3. Plot the periodic sequence, x[n] = {….5,4,3,2,1, 5,4,3,2,1, 5,4,3,2,1, 5,4,3,2,1……..}
+for n = -10 to 9
+
+% plot of periodic sequence
+n=[-10:9];
+x=[5,4,3,2,1];
+p=4;
+xy=x'*ones(1,p);
+% xy indicates, p=4 column of vectors of [ 5, 4 , 3, 2 , 1]
+xy =(xy(:))'; %a long column vector will be converted
+stem(n,xy, 'k')
+xlabel('n')
+ylabel('x(n)')
+grid on
+
+
+*****************************************************************
+
+4. Plot the sequence,
+
+x(n) = { 0, -1, 2, 5, ^7, -4, 3, -5, 6, -2 } , y(n) = x(n-2),
+and z(n) = x(n)+y(n).
+
+
+n=-4:5;
+x=[0 -1 2 5 7 -4 3 -5 6 -2];
+stem(n,x,'r*')
+hold on
+k=2;
+m=n+k;
+y=x;
+stem(m,y,'bd')
+hold on
+r=min(min(n),min(m)):max(max(n),max(m));%duration of z
+z1=zeros(1,length(r));z2=z1;%initialization
+z1(find((r>=min(n))&(r<=max(n))==1))=x;%x with duration of z
+z2(find((r>=min(m))&(r<=max(m))==1))=y;%y with duration of z
+
+z=z1+z2;
+stem(r,z,'k>')
+grid on
+xlabel('n')
+ylabel('x(n),y(n),z(n)')
+legend('x(n)','y(n)=x(n-2)', 'z(n)=x(n)+y(n)')
+
+
+******************************************************************
+
+5. For discrete time sequence, a sinusoidal wave is periodic if its frequency is a rational
+number like, f = M / K. Period of the wave is the denominator i.e. K
+
+
+%periodic sinusoidal wave
+n=0:1:50;
+f=1/20; %is a rational number, therefore period is 20
+y=sin(2*pi*f*n);
+subplot(2,1,1)
+stem(n,y, 'k')
+xlabel('n')
+ylabel('y(n)')
+title('Periodic sine wave N=20')
+grid on
+
+f=sqrt(2); % is an irrational number, non-periodic sinusoidal wave
+y=sin(2*pi*f*n);
+subplot(2,1,2)
+stem(n,y, 'k')
+xlabel('n')
+ylabel('y(n)')
+title('Non-periodic sine wave')
+grid on
+
+**********************************************************************
+
+6. The sampling rate of y(2n) is half the rate of y(n) therefore y(2n) is called the
+under sampled version of y(n). Let us verify the phenomenon.
+
+a=0.2;
+r=0.8;
+N=10;
+for n=1:N,
+s(n)=n;
+y(n)=a*r.^n;
+end
+
+M=N/2;
+for m=1:M,
+m=2*m;
+p(m)=m;
+z(m)= y(m);
+end
+stem(s,y,'ks')%Original sequence y(n)
+hold on
+stem(p,z,'k*')%under sampled sequence y(2n)
+xlabel('n')
+ylabel('y(n) and y(2n)')
+grid on
+legend('Original sequence', 'Under sampled')
+
+**************************************************************************
+
+
+7. Determine convolution of two sequences A = {6, 2, 0, 5, 6} and B = {-4, -2, 1, 0, 7}
+and find the length of resultant sequence.
+
+
+A=[6 2 0 5 6];
+B=[-4 -2 1 0 7];
+Y=conv(A,B);
+stem(A,'bs')
+hold on
+stem(B, 'r>')
+hold on
+stem(Y,'k*')
+legend('Sequence A', ' Sequence B', 'Convolution of sequences A*B')
+xlabel('n')
+ylabel('Amplitude')
+length(Y)
+grid on
+
+*****************************************************************************
+
+
+8. Generate 100 random numbers between 0 and 1. Add them with an exponential
+sequence as a random noise. Plot both noisy and noiseless signals.
+
+a=0.5;
+r=0.96;
+N=100; %number of samples
+for n=1:N,
+e(n)=n;
+y(n)=a*r.^n;
+yn(n)=y(n)+0.04*rand();%noisy sequence
+end
+stem(e,y,'k*') %values of y(n)
+hold on
+stem(e,yn,'kd') %plot of noisy sequence
+xlabel('n')
+ylabel('y(n)')
+legend('Original sequence', 'Noisy Sequence')
+grid on
+
+**************************************************************************
+
+
+9. Generate a unit step sequence for n = [-6, 6].
+
+n =[-6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6];
+x=[0 0 0 0 0 0 1 1 1 1 1 1 1];
+stem(n,x, 'k')
+xlabel('n')
+ylabel('x(n)')
+title('Unit step sequence')
+grid on
+
+
+For impulse sequence above code will be modified like,
+
+n =[-6 -5 -4 -3 -2 -1 0 1 2 3 4 5 6];
+x=[0 0 0 0 0 0 1 0 0 0 0 0 0];
+stem(n,x, 'k')
+xlabel('n')
+ylabel('x(n)')
+title('Impulse sequence')
+grid on
+
+*********************************************************************
+
+
+10. Computes the two-dimensional convolution of matrices,
+
+A = [1 -2 0; 3 4 -11; 6 -5 2];
+B = [-3 2 -8; 2 -7 0; -1 4 -1];
+
+
+A = [1 -2 0; 3 4 -11; 6 -5 2];
+B = [-3 2 -8; 2 -7 0; -1 4 -1];
+H = conv2(A, B);
+mesh(H)
+
+********************************************************************
+
+11. Generate 50 random numbers in the range [1,-1] and add it with the sequence x(n)
+=2n(0.9)n. Pass the noisy signal through a moving average filter and observe the signal
+before and after filtering
+
+
+N=50;%number of samples
+d=rand(N,1)-0.5;%noise with mean 0 and lies between -0.5 to 0.5
+m=0:1:N-1;
+s=2*m.*(0.9.^m);%original Sequence
+x=s+d'; %noisy sequence
+subplot(2,2,1)
+stem(m,s)
+title('Original Message')
+subplot(2,2,2)
+stem(m,d)
+title('Random Noise')
+subplot(2,2,3)
+stem(m, x)
+title('Noisy Sequence')
+subplot(2,2,4)
+plot(m, d, 'r-', m, s, 'b--', m, x, 'm-')
+legend('noise','original message', 'noisy message')
+figure
+M=input('Value of M=');% Value of M from key board
+b=ones(M, 1)/M;
+y=filter(b,1,x);
+plot(m,s,'r-',m,y,'b--')
+legend('Original Sequence', 'Moving Average Filtered Signal')
+grid on
+xlabel('n')
+ylabel('(y(n)')
+
+
+**************************************************************************
+
+12. Now we will listen to the speech signal with noise removal.
+
+load handel %original music signal
+u=y(1:20000);
+sound(u);
+
+d=0.5*rand(length(u),1)-0.5;%noise with mean 0 and lies between -0.25 to 0.25
+x=u+d; %noisy sequence
+sound(x)
+
+M=5;% Value of M
+b=ones(M,1)/M;
+z=2*filter(b,1,x);
+sound(z)
+
+subplot(3,1,1)
+plot(u)
+subplot(3,1,2)
+plot(x)
+subplot(3,1,3)
+plot(z)
+
+
+***************************************************************************
+
+13. In this section we will deal with elimination of noise by moving average method. Let
+us first load a voice/music signal and add some noise with it. Finally we will filter the
+signal and observe the signals and corresponding spectrograms.
+
+
+load handel
+u = y(1:16000);
+%sound(u)
+
+[num, den] = ellip(4,3,40,0.75, 'high');
+noise = filter(num, den, rand(length(u),1));
+x = u + noise;
+%sound(x)
+
+M = 5;
+b = ones(M,1)/M;
+z = filter(b,1,x);
+%sound(z)
+
+figure(1)
+subplot(1,3,1)
+specgram(u,[],Fs)
+title('Original wave')
+subplot(1,3,2)
+specgram(x,[],Fs)
+title('Noisy wave')
+subplot(1,3,3)
+specgram(z,[],Fs)
+title('Filtered wave')
+figure(2)
+subplot(3,1,1)
+plot(u)
+title('Original wave')
+subplot(3,1,2)
+plot(x)
+title('Noisy wave')
+subplot(3,1,3)
+plot(z)
+title('Filtered wave')
+
+******************************************************************************
+***********************************IIR FIlter*********************************
+
+1. Design a 10th order band pass (BP) Butterworth filter with a passband from 100 to 200
+Hz and plot both impulse response and frequency response and step response.
+
+
+Fs = 1000;   % sampling Freq
+n = 10;
+Wn = [100 200]/500;
+[b,a ] = butter(n,Wn);
+
+figure(1)
+[y,t] = impz(b,a,101);
+plot(t,y)
+title('Impulse Response')
+grid on
+
+
+figure(2)
+freqz(b,a, 512, Fs)
+title('Frequency Response')
+
+figure(3)
+stepz(b,a)   % step response
+grid on
+
+***************************************************************************
+
+2. Design a 10th order BP Chebyshev filter of type-I with a passband from 100 to 200 Hz
+and plot the impulse response and frequency response. Consider 25dB ripple in
+passband.
+
+Fs = 1000;
+n = 10;
+Wn = [100 200]/500;
+Rp = 25;
+[b,a] = cheby1(n,Rp,Wn);
+
+[y,t] = impz(b,a,101);
+figure(1)
+plot(t,y)
+title('Impulse Response')
+grid on
+
+figure(2)
+freqz(b,a,512,Fs)
+title('Frequency Response')
+
+******************************************************************************
+
+3. Design a 10th order BP elliptic filter with passband in the range of 100 to 200 Hz. Plot
+the frequency response and impulse response of the filter. Consider 5dB ripple in
+passband and 20dB attenuation in stopband.
+
+
+Fs = 1000;
+n = 10;
+Wn = [100 200]/500;
+Rp = 5;
+Rs = 20;
+
+[b,a] = ellip(n,Rp,Rs,Wn);
+
+figure(1)
+[y,t] = impz(b,a,101);
+plot(t,y)
+title('Impulse Response')
+grid on
+
+figure(2)
+freqz(b,a,512,Fs)
+title('Frequency Response')
+
+
+********************************************************************************
+
+6. A bandpass IIR filer has the transfer function of,
+
+H(z) = (z^2 - 1) / (z^2 + 0.877)
+     =  (1 - z^-1) / (1 + 0.877z^-1)
+
+determine poles
+and zeros of the filter and frequency response taking sampling frequency Fs = 500Hz.
+
+
+
+
+[P,Z ] = pzmap([1 0 -1], [1 0 .877])
+pzmap([1 0 -1], [1 0 .877])
+
+b = [1 0 -1];
+a = [1 0 .877];
+Fs = 500;
+
+freqz(b,a,512,Fs)
+
+
+
+*********************************************************************************
+*****************************FIR Filter******************************************
+
+1. Plot Hamming, Hann and Kaiser window functions used in design of a FIR filter
+
+beta = 5.2;
+N = 20;
+n = 1:1:20;
+
+y = hamming(N);
+y1 = hann(N);
+y2 = kaiser(N, beta);
+
+plot(n,y,'k^-',  n,y1,'kd:',  n,y2,'k*:')
+xlabel('n')
+ylabel('h(n)')
+legend('Hamming', 'Hann', 'Kaiser')
+grid on
+
+
+
+
+*******************************************************************************
+'****************************DFT**********************************************'
+
+
+4. Write Matlab code to determine DFT of x (n) = {1, 0, 0, 1} hence show the plot of
+X(m).
+
+x = [1 0 0 1];
+y = fft(x)
+
+subplot(2,1,1)
+stem(abs(y), 'k')
+xlabel('m')
+ylabel('X(m)')
+title('Absolute value of DFT sequence')
+
+subplot(2,1,2)
+stem(angle(y), 'k')
+xlabel('m')
+ylabel('Angle(X(m))')
+title('Angle of DFT sequence')
+
+******************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
